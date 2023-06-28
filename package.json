@@ -4,7 +4,9 @@
   "description": "A discord-to-roblox ban bot.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p .",
+    "start": "npm run build -- -w",
+    "dev": "ts-node -T src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,12 @@
   },
   "homepage": "https://github.com/TheMeltz/SecureBot#readme",
   "devDependencies": {
+    "eslint": "^8.43.0",
     "typescript": "^5.1.5"
+  },
+  "dependencies": {
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.3.1",
+    "ts-node": "^10.9.1"
   }
 }
