@@ -1,0 +1,28 @@
+{
+  "name": "securebot",
+  "version": "1.0.0",
+  "description": "A discord-to-roblox ban bot.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheMeltz/SecureBot.git"
+  },
+  "keywords": [
+    "discord",
+    "roblox",
+    "bam",
+    "bot"
+  ],
+  "author": "TheMeltz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheMeltz/SecureBot/issues"
+  },
+  "homepage": "https://github.com/TheMeltz/SecureBot#readme",
+  "devDependencies": {
+    "typescript": "^5.1.5"
+  }
+}
