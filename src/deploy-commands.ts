@@ -36,7 +36,6 @@ const rest = new REST().setToken(DISCORD_CLIENT_TOKEN!);
 
 		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
 	} catch (error) {
-		// And of course, make sure you catch and log any errors!
 		console.error(error);
 	}
 })();

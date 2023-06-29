@@ -10,7 +10,7 @@ describe('fetchUserFromIdentifier', () => {
     const result = await fetchUserFromIdentifier('Roblox');
     expect(result?.status).toBe(200);
     expect(result?.data).toBeDefined();
-    expect(result?.data.Username).toBe('exampleUsername');
+    expect(result?.data.Username).toBe('Roblox');
   });
 
   it('should fetch user information by userID', async () => {

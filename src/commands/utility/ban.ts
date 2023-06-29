@@ -4,15 +4,15 @@ import fetchUserFromIdentifier from "../../api/Userinfo";
 async function execute(interaction: { options: CommandInteractionOptionResolver<CacheType>; reply: (arg0: string) => any; }) {
     const options: CommandInteractionOptionResolver = interaction.options;
     const identifier = options.getString('identifier')
-    const reason = interaction.options.get('reason', false)?.value ?? 'No reason provided';
+    const reason = interaction.options.getString('reason', false) ?? 'No reason provided';
     const user = await fetchUserFromIdentifier(identifier!);
-    //console.log(user);
 
+    console.log(user);
     if (user?.status == 400) {
        return await interaction.reply(`User with identifier: ${identifier} was not found!`);
     }
 
-    return await interaction.reply(`Banning ${identifier} for reason: ${reason}`);
+    return await interaction.reply(`Banning ${user.data.Username} for reason: ${reason}`);
 }
 
 module.exports = {
@@ -36,7 +36,7 @@ module.exports = {
                 {name: '2 weeks', value: '1w'},
                 {name: '1 month', value: '1m'},
                 {name: '1 season', value: '6m'},
-                {name: '1 year', value: '1y'}
+                {name: '1 year', value: '1y'},
                 {name: '2 years', value: '2y'}
             )),
     execute: execute
