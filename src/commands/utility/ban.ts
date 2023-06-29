@@ -1,10 +1,18 @@
-import { CommandInteraction, SlashCommandBuilder } from "discord.js";
+import { CacheType, CommandInteractionOptionResolver, SlashCommandBuilder } from "discord.js";
+import fetchUserFromIdentifier from "../../api/Userinfo";
 
-async function execute(interaction: CommandInteraction) {
-    const identifier = interaction.options.get('identifier')?.value;
+async function execute(interaction: { options: CommandInteractionOptionResolver<CacheType>; reply: (arg0: string) => any; }) {
+    const options: CommandInteractionOptionResolver = interaction.options;
+    const identifier = options.getString('identifier')
     const reason = interaction.options.get('reason', false)?.value ?? 'No reason provided';
-    console.log(`Banned player ${identifier} with reason: ${reason}`);
-    await interaction.reply(`Banning ${identifier} for reason: ${reason}`)
+    const user = await fetchUserFromIdentifier(identifier!);
+    //console.log(user);
+
+    if (user?.status == 400) {
+       return await interaction.reply(`User with identifier: ${identifier} was not found!`);
+    }
+
+    return await interaction.reply(`Banning ${identifier} for reason: ${reason}`);
 }
 
 module.exports = {
@@ -22,11 +30,14 @@ module.exports = {
             .setDescription('The duration of the ban, leave blank if you want to be permament.')
             .setRequired(false)
             .addChoices(
-                {name: 'day', value: '1d'},
-                {name: 'week', value: '1w'},
-                {name: 'month', value: '1m'},
-                {name: 'season', value: '6m'},
-                {name: 'year', value: '1y'}
+                {name: '1 day', value: '1d'},
+                {name: '3 days', value: '3d'},
+                {name: '1 week', value: '1w'},
+                {name: '2 weeks', value: '1w'},
+                {name: '1 month', value: '1m'},
+                {name: '1 season', value: '6m'},
+                {name: '1 year', value: '1y'}
+                {name: '2 years', value: '2y'}
             )),
     execute: execute
 }
