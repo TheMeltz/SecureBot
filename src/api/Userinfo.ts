@@ -59,6 +59,7 @@ async function fetchUserFromIdentifier(identifier: string): Promise<UserResponse
     }
 
     const response = await (await fetch(GET_USER_BY_NAME_ENDPOINT, {
+        method: 'POST',
         body: JSON.stringify({
             usernames: [identifier],
             excludeBannedUsers: true
@@ -68,7 +69,7 @@ async function fetchUserFromIdentifier(identifier: string): Promise<UserResponse
     const data = await getUserinfoFromId(id);
 
     return {
-        status: 400,
+        status: 200,
         data: data
     }
 }
