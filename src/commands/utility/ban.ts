@@ -7,12 +7,11 @@ async function execute(interaction: { options: CommandInteractionOptionResolver<
     const reason = interaction.options.getString('reason', false) ?? 'No reason provided';
     const user = await fetchUserFromIdentifier(identifier!);
 
-    console.log(user);
     if (user?.status == 400) {
        return await interaction.reply(`User with identifier: ${identifier} was not found!`);
     }
 
-    return await interaction.reply(`Banning ${user.data.Username} for reason: ${reason}`);
+    return await interaction.reply(`Banning ${user.data.Username} for reason: ${reason}\n${user.data.Image}`);
 }
 
 module.exports = {

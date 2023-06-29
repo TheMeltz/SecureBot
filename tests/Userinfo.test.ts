@@ -14,14 +14,14 @@ describe('fetchUserFromIdentifier', () => {
   });
 
   it('should fetch user information by userID', async () => {
-    const result = await fetchUserFromIdentifier('123456');
+    const result = await fetchUserFromIdentifier('1');
     expect(result?.status).toBe(200);
     expect(result?.data).toBeDefined();
-    expect(result?.data.Id).toBe(123456);
+    expect(result?.data.Id).toBe(1);
   });
 
   it('should return status 404 if user information is not found', async () => {
-    const result = await fetchUserFromIdentifier('nonexistentUser');
+    const result = await fetchUserFromIdentifier('nonexistentUser15473573265');
     expect(result?.status).toBe(404);
   });
 });
