@@ -1,4 +1,5 @@
 import fetchUserFromIdentifier from "../src/api/Userinfo";
+import "jest";
 
 describe('fetchUserFromIdentifier', () => {
   it('should return status 400 if no identifier is provided', async () => {

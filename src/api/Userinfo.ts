@@ -63,8 +63,9 @@ async function fetchUserFromIdentifier(identifier: string): Promise<UserResponse
         body: JSON.stringify({
             usernames: [identifier],
             excludeBannedUsers: true
-        })
+        }) 
     })).json();
+    console.log(response)
     const {id} = response.data[0];
     const data = await getUserinfoFromId(id);
 
